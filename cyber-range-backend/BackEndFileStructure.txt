@@ -1,3 +1,12 @@
+Helpfull Info: 
+-express: Web framework for Node.js.
+-cors: Middleware to enable Cross-Origin Resource Sharing.
+-body-parser: Middleware to parse incoming request bodies.
+-mongoose: MongoDB object modeling tool.
+-jsonwebtoken: For user authentication with JWT.
+-bcryptjs: For hashing passwords.
+-dotenv: For managing environment variables.
+
 cyber-range-backend/
 │
 ├── config/
