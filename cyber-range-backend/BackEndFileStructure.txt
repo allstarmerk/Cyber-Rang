@@ -1,0 +1,18 @@
+cyber-range-backend/
+│
+├── config/
+│   └── db.js          # Database configuration
+│
+├── controllers/
+│   └── simulationController.js  # Logic for handling simulation requests
+│
+├── models/
+│   └── User.js        # User model
+│   └── Simulation.js  # Simulation model
+│
+├── routes/
+│   └── simulationRoutes.js  # API routes for simulations
+│
+├── .env               # Environment variables
+├── server.js          # Entry point of the application
+└── package.json
