@@ -1,1 +1,0 @@
-This is a cyber range to teach users of online saftey, and how to protect their networks & systems

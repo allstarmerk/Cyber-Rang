@@ -1,0 +1,156 @@
+Cyber Range Web Application
+
+A full-stack web application for a cyber range simulation platform. This project includes both frontend and backend components.
+Table of Contents
+
+    Frontend
+        Installation
+        Running the Development Server
+        Folder Structure
+        Dependencies
+        Usage
+    Backend
+        Installation
+        Configuration
+        Running the Server
+        Folder Structure
+        Dependencies
+        Usage
+        API Endpoints
+
+Frontend
+Installation
+
+    Clone the Frontend Repository:
+
+    bash
+
+git clone <frontend-repo-url>
+cd <frontend-repo-directory>
+
+Install Dependencies:
+
+Make sure you have Node.js and npm installed. Run:
+
+bash
+
+    npm install
+
+Running the Development Server
+
+To start the frontend development server, run:
+
+bash
+
+npm start
+
+Visit http://localhost:3000 in your browser to see the application.
+Folder Structure
+
+    src/: Contains all source files.
+        components/: React components used throughout the application.
+        pages/: Contains individual page components like Home, Simulation, Progress, and Resources.
+        App.js: Main application component where routes are defined.
+        index.js: Entry point of the React application.
+        index.css: Global CSS styles.
+
+Dependencies
+
+    @chakra-ui/react: A popular React UI framework for building accessible and responsive web applications.
+    react-router-dom: Library for routing in React applications.
+    @emotion/react and @emotion/styled: Emotion libraries for styling.
+
+Usage
+
+    React Components: Build and organize your UI components under the components directory.
+    Routing: Configure routes in App.js using react-router-dom.
+    Styling: Use Chakra UI components and CSS for styling.
+
+Backend
+Installation
+
+    Clone the Backend Repository:
+
+    bash
+
+git clone <backend-repo-url>
+cd <backend-repo-directory>
+
+Install Dependencies:
+
+Make sure you have Node.js and npm installed. Run:
+
+bash
+
+    npm install
+
+Configuration
+
+    Create a .env File:
+
+    Add your environment variables in the .env file:
+
+    plaintext
+
+    MONGO_URI=mongodb://localhost:27017/cyberrange
+    JWT_SECRET=your_jwt_secret
+
+        MONGO_URI: MongoDB connection string.
+        JWT_SECRET: Secret key for JWT token signing.
+
+    Database Setup:
+
+    Ensure MongoDB is installed and running on your local machine or configure a cloud MongoDB instance.
+
+Running the Server
+
+To start the backend server, run:
+
+bash
+
+node server.js
+
+The server will run on http://localhost:5000 by default.
+Folder Structure
+
+    config/: Configuration files (e.g., database connection).
+        db.js: Database connection setup.
+    controllers/: Business logic for API endpoints.
+        simulationController.js: Handles simulation-related requests.
+        userController.js: Handles user registration and authentication.
+    models/: Mongoose models for MongoDB schemas.
+        User.js: User schema and model.
+        Simulation.js: Simulation schema and model.
+    routes/: API route definitions.
+        simulationRoutes.js: Routes for simulation-related endpoints.
+        authRoutes.js: Routes for user authentication.
+    server.js: Main entry point for the Node.js server.
+
+Dependencies
+
+    express: Web framework for Node.js.
+    cors: Middleware for handling cross-origin requests.
+    body-parser: Middleware for parsing request bodies.
+    mongoose: MongoDB object modeling tool.
+    jsonwebtoken: For user authentication with JWT.
+    bcryptjs: For password hashing.
+    dotenv: For environment variable management.
+
+Usage
+
+    Database Models: Define schemas in models/ and interact with MongoDB.
+    Controllers: Implement API logic in controllers/.
+    Routes: Set up routes in routes/ to expose API endpoints.
+    Authentication: Handle user authentication and token management in userController.js.
+
+API Endpoints
+Simulations
+
+    GET /api/simulations: Retrieve all simulations.
+    POST /api/simulations: Create a new simulation.
+
+User Authentication
+
+    POST /api/auth/register: Register a new user.
+    POST /api/auth/login: Login a user and return a JWT token.
+
