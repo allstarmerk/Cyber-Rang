@@ -8,7 +8,7 @@ import Progress from './pages/Progress';
 import Resources from './pages/Resources';
 import Register from './pages/Register';
 import Login from './pages/Login';
-import Navbar from './components/Navbar';
+import Navbar from './componets/Navbar';
 import ProtectedRoute from './pages/ProtectedRoute';
 
 function App() {
