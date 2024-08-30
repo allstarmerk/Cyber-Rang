@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Heading, Text, VStack, Divider, Link, Stack } from '@chakra-ui/react';
+import { Box, Heading, Text, VStack, Divider, Link } from '@chakra-ui/react';
 
 const resourcesList = [
   {
@@ -43,3 +43,4 @@ const Resources = () => {
 };
 
 export default Resources;
+

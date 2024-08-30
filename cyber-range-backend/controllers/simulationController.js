@@ -1,16 +1,16 @@
-// controllers/simulationController.js
 const Simulation = require('../models/Simulation');
 
 // Get all simulations
 exports.getAllSimulations = async (req, res) => {
   try {
     const simulations = await Simulation.find();
-    res.json(simulations);
+    res.status(200).json(simulations);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(500).json({ message: 'Error fetching simulations', error: err.message });
   }
 };
 
+// Create a new simulation
 exports.createSimulation = async (req, res) => {
   const { type, description } = req.body;
   try {
@@ -18,6 +18,7 @@ exports.createSimulation = async (req, res) => {
     await newSimulation.save();
     res.status(201).json(newSimulation);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(500).json({ message: 'Error creating simulation', error: err.message });
   }
 };
+
