@@ -1,45 +1,42 @@
-// src/components/Navbar.js
-import React, { useContext } from 'react';
-import { Box, Flex, Heading, Link, Spacer, Button } from '@chakra-ui/react';
-import { Link as RouterLink } from 'react-router-dom';
-import AuthContext from '../contexts/AuthContext';
+import React, { useState, useEffect } from 'react';
+import { Box, Button } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
 
-function Navbar() {
-  const { token, logout } = useContext(AuthContext);
+const Navbar = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Check if token exists in localStorage
+    const token = localStorage.getItem('token');
+    setIsLoggedIn(!!token);
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token'); // Remove token from localStorage
+    setIsLoggedIn(false); // Update local state
+    navigate('/'); // Redirect to home page
+  };
 
   return (
-    <Box bg="blue.500" color="white" p={4}>
-      <Flex align="center">
-        <Heading size="lg">Cyber Range</Heading>
-        <Spacer />
-        <Link as={RouterLink} to="/" p={2} _hover={{ textDecoration: 'none', color: 'blue.200' }}>
-          Home
-        </Link>
-        <Link as={RouterLink} to="/simulation" p={2} _hover={{ textDecoration: 'none', color: 'blue.200' }}>
-          Simulation
-        </Link>
-        <Link as={RouterLink} to="/progress" p={2} _hover={{ textDecoration: 'none', color: 'blue.200' }}>
-          Progress
-        </Link>
-        <Link as={RouterLink} to="/resources" p={2} _hover={{ textDecoration: 'none', color: 'blue.200' }}>
-          Resources
-        </Link>
-        {token ? (
-          <Button onClick={logout} colorScheme="red" ml={4}>Logout</Button>
-        ) : (
-          <>
-            <Link as={RouterLink} to="/login" p={2} _hover={{ textDecoration: 'none', color: 'blue.200' }}>
-              Login
-            </Link>
-            <Link as={RouterLink} to="/register" p={2} _hover={{ textDecoration: 'none', color: 'blue.200' }}>
-              Register
-            </Link>
-          </>
-        )}
-      </Flex>
+    <Box p={4} bg="gray.800" color="white">
+      <Box display="flex" justifyContent="space-between" alignItems="center">
+        <Box>
+          <Button onClick={() => navigate('/')} colorScheme="teal" variant="outline">Home</Button>
+        </Box>
+        <Box>
+          {!isLoggedIn ? (
+            <>
+              <Button onClick={() => navigate('/login')} colorScheme="teal" variant="outline" mr={4}>Login</Button>
+              <Button onClick={() => navigate('/register')} colorScheme="teal" variant="outline">Register</Button>
+            </>
+          ) : (
+            <Button onClick={handleLogout} colorScheme="red" variant="outline">Sign Out</Button>
+          )}
+        </Box>
+      </Box>
     </Box>
   );
-}
+};
 
 export default Navbar;
-

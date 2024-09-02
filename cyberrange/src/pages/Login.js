@@ -1,4 +1,3 @@
-// src/pages/Login.js
 import React, { useState } from 'react';
 import { Box, Button, FormControl, FormLabel, Input, Stack, Heading, Text } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
@@ -7,7 +6,6 @@ const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [token, setToken] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -23,7 +21,6 @@ const Login = () => {
 
       if (response.ok) {
         const data = await response.json();
-        setToken(data.token);
         localStorage.setItem('token', data.token); // Save token to localStorage
         navigate('/'); // Redirect to home page after successful login
       } else {

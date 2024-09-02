@@ -15,20 +15,18 @@ const Register = () => {
     try {
       const response = await fetch('http://localhost:5000/api/auth/register', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json', // Indicates that the request body contains JSON
-        },
-        body: JSON.stringify({ username, password }), // Convert the data to JSON format
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password }),
       });
 
       if (response.ok) {
         navigate('/login'); // Redirect to login page after successful registration
       } else {
         const data = await response.json();
-        setError(data.message); // Show error message from the server
+        setError(data.message);
       }
     } catch (err) {
-      setError('An error occurred'); // Handle fetch errors
+      setError('An error occurred');
     }
   };
 
