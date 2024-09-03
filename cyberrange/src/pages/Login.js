@@ -1,4 +1,3 @@
-// src/pages/Login.js
 import React, { useState } from 'react';
 import { Box, Button, FormControl, FormLabel, Input, Stack, Heading, Text } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
@@ -7,12 +6,13 @@ const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [token, setToken] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+
+    console.log('Login form submitted with:', { username, password }); // Debugging
 
     try {
       const response = await fetch('http://localhost:5000/api/auth/login', {
@@ -23,15 +23,17 @@ const Login = () => {
 
       if (response.ok) {
         const data = await response.json();
-        setToken(data.token);
         localStorage.setItem('token', data.token); // Save token to localStorage
-        navigate('/'); // Redirect to home page after successful login
+        console.log('Login successful, token received'); // Debugging
+        navigate('/');
       } else {
         const data = await response.json();
         setError(data.message);
+        console.error('Login failed:', data.message); // Debugging
       }
     } catch (err) {
       setError('An error occurred');
+      console.error('Login error:', err); // Debugging
     }
   };
 
@@ -65,3 +67,4 @@ const Login = () => {
 };
 
 export default Login;
+

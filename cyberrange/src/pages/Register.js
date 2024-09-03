@@ -12,23 +12,26 @@ const Register = () => {
     e.preventDefault();
     setError('');
 
+    console.log('Register form submitted with:', { username, password }); // Debugging
+
     try {
       const response = await fetch('http://localhost:5000/api/auth/register', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json', // Indicates that the request body contains JSON
-        },
-        body: JSON.stringify({ username, password }), // Convert the data to JSON format
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password }),
       });
 
       if (response.ok) {
-        navigate('/login'); // Redirect to login page after successful registration
+        console.log('Registration successful'); // Debugging
+        navigate('/login');
       } else {
         const data = await response.json();
-        setError(data.message); // Show error message from the server
+        setError(data.message);
+        console.error('Registration failed:', data.message); // Debugging
       }
     } catch (err) {
-      setError('An error occurred'); // Handle fetch errors
+      setError('An error occurred');
+      console.error('Registration error:', err); // Debugging
     }
   };
 
@@ -62,5 +65,4 @@ const Register = () => {
 };
 
 export default Register;
-
 
